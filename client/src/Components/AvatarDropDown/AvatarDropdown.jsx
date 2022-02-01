@@ -1,5 +1,3 @@
-import { useRef, useState } from "react";
-
 export const AvatarDropdown = () => {
   return (
     <div class="relative group">
@@ -11,7 +9,7 @@ export const AvatarDropdown = () => {
         />
       </div>
       <div class="absolute z-10 hidden bg-grey-200 group-hover:block mt-6">
-        <div class="px-2 pt-2 pb-4 bg-green-200 bg-gray-200 shadow-l">
+        <div class="px-2 pt-2 pb-4 bg-green-200 bg-slate-100 shadow-l">
           <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
             <ul>
               <li className="">

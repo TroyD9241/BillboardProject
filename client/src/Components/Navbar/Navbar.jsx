@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { AvatarDropdown } from "../AvatarDropDown/AvatarDropdown";
 import { LoginModal } from "../LoginModal/LoginModal";
-import { PasswordContext, UserContext } from "../../Context/LoginContext";
 
 export const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
@@ -30,19 +29,17 @@ export const Navbar = () => {
           <div class="text-sm lg:flex-grow"></div>
           <div className="flex -space-x-1 overflow-hidden pl-20"></div>
         </div>
-        <button
-          className="bg-green-500 text-green-900 active:bg-green-300 text-md px-6 py-3 rounded rounded-2xl shadow-md
-      hover:shadow-lg outline-none focus:outline-non mr-1 transition-all duration-100"
-          type="button"
-          onClick={() => setShowModal(!showModal)}
-        >
-          Login
-        </button>
-        <UserContext.Provider value={{ username, setUsername }}>
-          <PasswordContext.Provider value={{ password, setPassword }}>
-            <LoginModal showModal={showModal} />
-          </PasswordContext.Provider>
-        </UserContext.Provider>
+        <>
+          <button
+            className="bg-green-500 text-green-900 active:bg-green-300 text-md px-6 py-3 rounded rounded-2xl shadow-md
+        hover:shadow-lg outline-none focus:outline-non mr-1 transition-all duration-100"
+            type="button"
+            onClick={() => setShowModal(!showModal)}
+          >
+            Login
+          </button>
+        </>
+        <LoginModal showModal={showModal} />
         <AvatarDropdown />
       </nav>
     </>
