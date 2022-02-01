@@ -1,13 +1,11 @@
-import { useState, useContext } from "react";
-import { UserContext, PasswordContext } from "../../Context/LoginContext";
+import { useState } from "react";
 import { createPortal } from "react-dom";
 
 const modalRoot = document.getElementById("modal-root");
 
 export const LoginModal = ({ showModal }) => {
-  const { setUsername } = useContext(UserContext);
-  const { setPassword } = useContext(PasswordContext);
-
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   return createPortal(
     <>
       {showModal ? (
