@@ -10,7 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@prisma/client": "^3.8.1",
+    "@prisma/client": "^3.8.0",
     "@types/graphql": "^14.5.0",
     "@types/node": "^17.0.13",
     "@types/ws": "^8.2.2",
@@ -19,6 +19,7 @@
     "dotenv": "^15.0.0",
     "graphql": "^16.3.0",
     "graphql-scalars": "^1.14.1",
+    "nodemon": "^2.0.15",
     "prisma": "^3.8.1",
     "qs": "^6.10.3",
     "ts-node": "^10.4.0",
