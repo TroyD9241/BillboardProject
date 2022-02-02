@@ -1,0 +1,22 @@
+scalar DateTime
+
+type Mutation {
+}
+
+type User {
+    username: String
+    password: String
+    pfp: String
+    favoriteTracks: [Track!]!
+    id: Int!
+    updatedAt: DateTime!
+}
+
+type Track {
+    trackName: String
+    artist: String
+    album: String
+    genre: String
+    image: String
+    id: Int!
+}
