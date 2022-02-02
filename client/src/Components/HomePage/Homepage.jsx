@@ -4,7 +4,7 @@ import { SongGrid } from "../../SongGrid/SongGrid";
 export const Homepage = () => {
   return (
     <>
-      <div>
+      <div className="flex ">
         <Sidenav />
       </div>
       <div className="">
