@@ -6,11 +6,11 @@ const modalRoot = document.getElementById("modal-root");
 export const LoginModal = ({ showModal }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  return createPortal(
+  return (
     <>
       {showModal ? (
         <>
-          <div class="flex justify-center mt-40">
+          <div class="flex justify-center absolute mt-40 z-50 ml-[720px]">
             <form class="bg-slate-100 shadow-md rounded px-8 pt-6 pb-8 mb-4">
               <div class="mb-4">
                 <label
@@ -60,7 +60,6 @@ export const LoginModal = ({ showModal }) => {
           </div>
         </>
       ) : null}
-    </>,
-    modalRoot
+    </>
   );
 };

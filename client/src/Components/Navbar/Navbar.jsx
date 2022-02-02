@@ -41,9 +41,9 @@ export const Navbar = () => {
             Login
           </button>
         </>
-        <LoginModal showModal={showModal} />
         <AvatarDropdown />
       </nav>
+      <LoginModal showModal={showModal} />
     </>
   );
 };
