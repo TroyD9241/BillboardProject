@@ -1,0 +1,30 @@
+type Query {
+  info: String!
+  feed: [Track!]!
+}
+
+type Mutation {
+  post(username: String!, password: String!, pfp: String!): User!
+  login(email: String!, password: String!): AuthPayload
+}
+type AuthPayload {
+  token: String
+  user: User
+}
+
+type User {
+  id: ID!
+  username: String!
+  password: String!
+  pfp: String!
+  favoriteTracks: [Track!]!
+}
+
+type Track {
+  id: ID!
+  trackName: String!
+  artist: String!
+  image: String!
+  region: String!
+  userId: Int
+}
