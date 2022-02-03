@@ -1,0 +1,29 @@
+type Query {
+  feed: [Track!]!
+}
+
+type Mutation {
+  login(username: String!, password: String!): AuthPayload
+  signup(username: String!, password: String!, pfp: String): AuthPayload
+}
+type AuthPayload {
+  token: String
+  user: User
+}
+
+type User {
+  id: ID!
+  username: String!
+  password: String!
+  pfp: String!
+  favorites: [Track!]!
+}
+
+type Track {
+  id: ID!
+  trackName: String!
+  artist: String!
+  image: String!
+  region: String!
+  userId: User
+}
