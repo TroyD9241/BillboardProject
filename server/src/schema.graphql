@@ -5,11 +5,7 @@ type Query {
 type Mutation {
   login(username: String!, password: String!): AuthPayload
   signup(username: String!, password: String!, pfp: String): AuthPayload
-  like(linkId: ID!): Like
-}
-
-type Subscription {
-  newLike: Like
+  like(trackId: ID!): Like
 }
 
 type AuthPayload {

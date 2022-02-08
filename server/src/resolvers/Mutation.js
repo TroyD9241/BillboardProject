@@ -41,11 +41,13 @@ async function login(parent, args, context, info) {
 
 async function like(parent, args, context, info) {
   const { userId } = context
-
+  console.log(userId)
+  const newTrack = parseInt(args.trackId)
+  console.log(newTrack)
   const like = await context.prisma.like.findUnique({
     where: {
       trackId_userId: {
-        trackId: Number(args.trackId),
+        trackId: newTrack,
         userId: userId,
       },
     },
@@ -61,9 +63,6 @@ async function like(parent, args, context, info) {
       track: { connect: { id: Number(args.trackId) } },
     },
   })
-  context.pubsub.publish('NEW_LIKE', newLike)
-  console.log(data)
-
   return newLike
 }
 
