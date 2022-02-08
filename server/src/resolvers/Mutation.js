@@ -1,31 +1,15 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const { APP_SECRET, getUserId } = require('../utils.js')
+const { APP_SECRET, getUserId } = require('../utils')
 
 async function signup(parent, args, context, info) {
   const password = await bcrypt.hash(args.password, 10)
 
-  const user = await context.prisma.user.create({ data: { ...args, password } })
-
-  const token = jwt.sign({ userId: user.id }.APP_SECRET)
-
-  return { token, user }
-}
-
-async function login(parent, args, context, info) {
-  const user = await context.prisma.user.findUnique({
-    where: { username: args.username },
+  const user = await context.prisma.user.create({
+    data: { ...args, password },
   })
-  if (!user) {
-    throw new Error('No such user found')
-  }
 
-  const valid = await bcrypt.compare(args.password, user.password)
-  if (!valid) {
-    throw new Error('Invalid Password')
-  }
-
-  const token = jwt.sign({ user: user.id }, APP_SECRET)
+  const token = jwt.sign({ userId: user.id }, APP_SECRET)
 
   return {
     token,
@@ -33,7 +17,58 @@ async function login(parent, args, context, info) {
   }
 }
 
+async function login(parent, args, context, info) {
+  const user = await context.prisma.user.findUnique({
+    where: { username: args.username },
+  })
+
+  if (!user) {
+    throw new Error('No user found')
+  }
+
+  const valid = await bcrypt.compare(args.password, user.password)
+  if (!valid) {
+    throw new Error('Invalid Password')
+  }
+
+  const token = jwt.sign({ userId: user.id }, APP_SECRET)
+
+  return {
+    token,
+    user,
+  }
+}
+
+async function like(parent, args, context, info) {
+  const { userId } = context
+
+  const like = await context.prisma.like.findUnique({
+    where: {
+      trackId_userId: {
+        trackId: Number(args.trackId),
+        userId: userId,
+      },
+    },
+  })
+
+  if (Boolean(like)) {
+    throw new Error('Already favorited this')
+  }
+
+  const newLike = context.prisma.like.create({
+    data: {
+      user: { connect: { id: userId } },
+      track: { connect: { id: Number(args.trackId) } },
+    },
+  })
+  context.pubsub.publish('NEW_LIKE', newLike)
+  console.log(data)
+
+  return newLike
+}
+
 module.exports = {
-  login,
   signup,
+  login,
+  like,
 }

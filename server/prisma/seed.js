@@ -10,31 +10,11 @@ const userData = (Prisma.UserCreateInput = [
     username: 'demo',
     password: 'demo',
     pfp: 'demo1',
-    favoriteTracks: {
-      create: [
-        {
-          trackName: 'demo',
-          artist: 'demo',
-          image: 'demo',
-          region: 'us',
-        },
-      ],
-    },
   },
   {
     username: 'Alice',
     password: 'demo',
     pfp: 'demo1',
-    favoriteTracks: {
-      create: [
-        {
-          trackName: 'demo',
-          artist: 'demo',
-          image: 'demo',
-          region: 'us',
-        },
-      ],
-    },
   },
 ])
 

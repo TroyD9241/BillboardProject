@@ -1,11 +1,17 @@
 type Query {
-  feed: [Track!]!
+  feed(filter: String): Feed!
 }
 
 type Mutation {
   login(username: String!, password: String!): AuthPayload
   signup(username: String!, password: String!, pfp: String): AuthPayload
+  like(linkId: ID!): Like
 }
+
+type Subscription {
+  newLike: Like
+}
+
 type AuthPayload {
   token: String
   user: User
@@ -26,4 +32,15 @@ type Track {
   image: String!
   region: String!
   userId: User
+  likes: [Like!]!
+}
+
+type Like {
+  id: ID!
+  track: Track!
+  user: User!
+}
+
+type Feed {
+  tracks: [Track!]!
 }
