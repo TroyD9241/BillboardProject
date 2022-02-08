@@ -33,6 +33,4 @@ model Like {
   userId  Int?
   Track   Track? @relation(fields: [trackId], references: [id])
   trackId Int?
-
-  @@unique([userId, trackId])
 }
